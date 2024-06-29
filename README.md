@@ -51,6 +51,12 @@ Usage
 Run on Boot: The Python script (broadcast_ip.py) runs automatically on Raspberry Pi boot. It broadcasts the Raspberry Pi's IP address every 3 seconds.
 Logs: Check the log file (/tmp/broadcast_ip.log) to verify the script's operation and to see the IP address broadcasts.
 
+
+### Download the Apk from HERE 
+https://github.com/Mr-Jerry-Haxor/UDP-Connectivity/releases/download/v1/UDPListener.apk
+
+This Apk file Helps to listen the UDP Broadcast Message from UDP sender device , ( Default port : 5005 ) 
+
 Troubleshooting
 
 If the script does not start on boot, check crontab setup and permissions (chmod +x).

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import socket
 import time
 import subprocess
@@ -23,7 +25,7 @@ def broadcast_ip(ip_address, port):
         while True:
             sock.sendto(message, (broadcast_address, port))
             print(f"Broadcasted: {message.decode()} to {broadcast_address}:{port}")
-            time.sleep(2)  # Broadcast every 2 seconds
+            time.sleep(3)  # Broadcast every 3 seconds
     except KeyboardInterrupt:
         pass
     finally:
@@ -35,3 +37,6 @@ if __name__ == "__main__":
     
     # Port for broadcasting (choose an unused port)
     broadcast_port = 5005
+    
+    # Broadcast the IP address
+    broadcast_ip(ip_address, broadcast_port)

@@ -18,6 +18,8 @@ def broadcast_ip(port):
         
         while True:
             try:
+                if not ip_address:
+                    break
                 # Construct the message to broadcast
                 message = f"Raspberry Pi IP: {ip_address}".encode()
                 

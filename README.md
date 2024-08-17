@@ -19,31 +19,66 @@ git clone https://github.com/Mr-Jerry-Haxor/UDP-Connectivity.git
 ```
 ```
 cd UDP-Connectivity
+
+sudo cp broadcast_ip.py /opt/broadcast_ip.py
 ```
 
 ## Make it executable:
 ```
-chmod +x broadcast_ip.py
+sudo chmod +x /opt/broadcast_ip.py
 ```
 
-## get the path of the file 
+Create a new service file
 ```
-pwd
-```
-By excuting you will get the past of the current diretory, copy it to use in next steps.
-
-## adding script to run on system Boot
-```
-crontab -e
+sudo nano /etc/systemd/system/broadcast_ip.service
 ```
 
-Add the following line to crontab:
+
+Paste the following content into the file
 
 ```
-@reboot <paste_copied_path>/broadcast_ip.py > /tmp/broadcast_ip.log 2>&1 &
+[Unit]
+Description=Custom broadcast ip Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=sudo /usr/bin/python3 /opt/broadcast_ip.py > /tmp/broadcast_ip.log 2>&1 &
+Restart=always
+RestartSec=3
+User=root   
+Group=root  
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-Save and exit the editor
+save and close the file by pressing CTRL + X, then Y to confirm the changes, and Enter to exit.
+
+
+Reload systemd and Start the Service
+After creating the service file, reload systemd to read the new service file and start the service:
+
+```
+sudo systemctl daemon-reload
+
+sudo systemctl start broadcast_ip
+```
+
+Enable the Service to Start on Boot
+
+```
+sudo systemctl enable broadcast_ip
+```
+
+Check the Status
+You can check the status of your service to ensure it's running without errors:
+
+```
+sudo systemctl status broadcast_ip
+```
+
+
 
 
 Usage
